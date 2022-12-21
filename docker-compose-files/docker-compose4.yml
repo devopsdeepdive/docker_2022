@@ -1,0 +1,23 @@
+version: "2.2"
+networks:
+  frontend:
+    driver: bridge
+
+services:
+  webserver:
+    image: nginx:latest
+    ports:
+       - "8080:80"
+    networks:
+      - frontend
+    volumes:
+       - ./db-data:/usr/local/nginx/conf
+  redis:
+    image: redis
+  database:
+    image: postgres
+    ports:
+      - "5432"
+    env_file: .env
+    volumes:
+       - ./pg-data:/var/lib/postgresql/data

@@ -1,0 +1,10 @@
+version: "2.2"
+services:
+  webserver:
+    image: nginx:latest
+    ports:
+       - "8080:80"
+    volumes:
+       - ./db-data:/usr/local/nginx/conf
+  redis:
+    image: redis
